@@ -1,0 +1,4 @@
+map i recolor
+map p print
+set selection-clipboard clipboard
+set font "Iosevka Fixed SS04 11"

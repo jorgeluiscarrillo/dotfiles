@@ -1,0 +1,35 @@
+general {
+  colors = false
+  interval = 3
+}
+
+order += "volume master"
+order += "cpu_usage"
+order += "battery all"
+order += "tztime local"
+
+volume master {
+  format = " %volume"
+  format_muted = " (%volume)"
+  device = "pulse"
+}
+
+cpu_usage {
+  format = " %usage"
+}
+
+battery all {
+  format = "%status %percentage %remaining"
+  format_down = ""
+  status_chr = " "
+  status_bat = " "
+  status_unk = " "
+  status_full = " "
+  hide_seconds = true
+  low_threshold = 20
+  threshold_type = "time"
+}
+
+tztime local {
+  format = " %a %d %b %I:%M %p "
+}

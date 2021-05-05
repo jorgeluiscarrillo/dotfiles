@@ -1,0 +1,3 @@
+#!/bin/sh
+# Set the desktop background
+feh --no-fehbg --bg-scale "$HOME/Pictures/background.jpg"

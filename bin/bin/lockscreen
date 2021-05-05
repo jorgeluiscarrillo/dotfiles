@@ -1,0 +1,13 @@
+#!/bin/sh
+# Lock the screen with i3lock
+
+tmpbg='/tmp/screen.png'
+
+# Take a pixelized screenshot of the desktop
+maim "$tmpbg"
+mogrify -scale 10% -scale 1000% "$tmpbg"
+
+# Pause dunst to avoid getting notifications in the lockscreen (notifications are put in a queue)
+killall -SIGUSR1 dunst
+i3lock --nofork --ignore-empty-password --image="$tmpbg"
+killall -SIGUSR2 dunst # Resume

@@ -1,0 +1,67 @@
+[global]
+    monitor = 0
+    follow = mouse
+    geometry = "350x5-24+49"
+    indicate_hidden = true
+    shrink = false
+    transparency = 0
+    notification_height = 0
+    separator_height = 2
+    padding = 10
+    horizontal_padding = 10
+    frame_width = 0
+    frame_color = "#161821"
+    separator_color = frame
+    sort = true
+    idle_threshold = 120
+    font = Iosevka Fixed SS04 Medium 11
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    show_age_threshold = 60
+    word_wrap = true
+    ellipsize = middle
+    ignore_newline = false
+    stack_duplicates = true
+    hide_duplicate_count = true
+    show_indicators = false
+    icon_position = left
+    max_icon_size = 32
+    icon_path = /usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/apps/
+    sticky_history = true
+    history_length = 20
+    browser = /usr/bin/firefox -new-tab
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    startup_notification = false
+    verbosity = mesg
+    corner_radius = 0
+    force_xinerama = false
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#161821"
+    foreground = "#C6C8D1"
+    timeout = 5
+
+[urgency_normal]
+    background = "#161821"
+    foreground = "#C6C8D1"
+    timeout = 5
+
+[urgency_critical]
+    background = "#E27878"
+    foreground = "#161821"
+    timeout = 0
+
+# vim: ft=cfg

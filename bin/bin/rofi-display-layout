@@ -1,0 +1,20 @@
+#!/bin/sh
+# Invoke rofi to switch between my frequently used display layouts
+
+internal_display=LVDS-1
+external_display=HDMI-2
+
+chosen=$(printf "Mobile\nDocked\nLid Closed" | rofi -dmenu -i -p "Display Layout" -lines 3 -width 15)
+case "$chosen" in
+  "Mobile") xrandr \
+    --output "$internal_display" --primary --mode 1366x768 --pos 0x0 --rotate normal \
+    --output "$external_display" --off ;;
+  "Docked") xrandr \
+    --output "$internal_display" --mode 1366x768 --pos 0x0 --rotate normal \
+    --output "$external_display" --primary --mode 1920x1080 --pos 1366x0 ;;
+  "Lid Closed") xrandr \
+    --output "$internal_display" --off \
+    --output "$external_display" --primary --mode 1920x1080 --pos 0x0 ;;
+esac
+# Refresh background to prevent graphical glitches when switching between layouts
+feh --no-fehbg --bg-scale "$HOME/Pictures/background.jpg"

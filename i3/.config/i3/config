@@ -1,0 +1,176 @@
+# Set Mod to Windows key
+set $mod Mod4
+
+# Remove window titles
+default_border pixel
+default_floating_border pixel
+
+# Window title font (used in tabbed mode)
+font pango: Iosevka Fixed SS04 Semibold 11
+
+# i3 window decorations
+# class                 border  bground text    indicator child_border
+client.focused          #2A3158 #2A3158 #CDD1E6 #D2D4DE   #2A3158
+client.focused_inactive #1E2132 #1E2132 #444B71 #D2D4DE   #1E2132
+client.unfocused        #0F1117 #0F1117 #3E445E #D2D4DE   #0F1117
+client.urgent           #E27878 #E27878 #161821 #E27878   #E27878
+# client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+client.background       #161821
+
+# i3bar configuration
+bar {
+  status_command i3status
+  position top
+  font pango: Iosevka Fixed SS04 Medium, Font Awesome 5 Free Solid 11
+  separator_symbol " "
+  tray_output primary
+  tray_padding 0
+
+  # Colors (Iceberg)
+  colors {
+    background #161821
+    statusline #C6C8D1
+    separator  #6B7089
+
+    # class            border  backgr. text
+    focused_workspace  #2A3158 #2A3158 #CDD1E6
+    active_workspace   #1E2132 #1E2132 #444B71
+    inactive_workspace #0F1117 #0F1117 #3E445E
+    urgent_workspace   #E27878 #E27878 #161821
+    binding_mode       #E2A478 #E2A478 #161821
+  }
+}
+
+# Automatic back-and-forth when switching to the current workspace
+workspace_auto_back_and_forth yes
+
+# Use Mouse+Mod to drag floating windows
+floating_modifier $mod
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Resize window
+bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
+bindsym $mod+Shift+u resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+i resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+o resize grow width 5 px or 5 ppt
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split in horizontal orientation
+bindsym $mod+semicolon split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (tabbed, toggle split)
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+bindsym $mod+Shift+a focus child
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Use floating windows for common pop-up and dialog menus
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="(?i)firefox" window_role="(?i)GtkFileChooserDialog"] floating enable, move position center, resize set 800 600
+
+# Applications to start as a floating window
+for_window [class="(?i)runelite"] floating enable
+
+# Adjust volume or toggle mute
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Adjust brightness (requires light)
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+
+# Application Bindings
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+b exec firefox
+bindsym $mod+d exec rofi -show drun -show-icons
+bindsym $mod+r exec --no-startup-id alacritty --title "ranger" --command ranger
+bindsym $mod+Shift+n exec --no-startup-id pkill -USR1 redshift # On/Off toggle for redshift
+
+# Takes a screenshot of your entire screen (all displays)
+bindsym --release Print exec --no-startup-id maim ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S").png
+# Take a screenshot of a region (click and drag) or an entire window (single click)
+bindsym --release Shift+Print exec --no-startup-id maim -s ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S").png
+
+# Rofi dmenu script to logout, shutdown, etc.
+bindsym $mod+Escape exec --no-startup-id rofi-system-power
+# Rofi dmenu script to adjust display layout
+bindsym $mod+Shift+d exec --no-startup-id rofi-display-layout
+# Rofi dmenu script to manage NetworkManager
+bindsym $mod+n exec --no-startup-id networkmanager_dmenu
+
+# Autostart Applications
+exec_always --no-startup-id set-background
+exec --no-startup-id dunst
+exec --no-startup-id picom
+exec --no-startup-id redshift -l 33.94647:-118.15243 -t 6500K:3400K
+exec --no-startup-id udiskie
+exec --no-startup-id xss-lock -- ~/bin/lockscreen
+exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
