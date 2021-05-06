@@ -7,6 +7,8 @@ fi
 
 [[ -f ~/.config/X11/xresources ]] && xrdb -load ~/.config/X11/xresources
 
+setxkbmap -option compose:ralt
+
 internal_display=LVDS-1
 external_display=HDMI-2
 if xrandr | grep "$external_display connected"; then
