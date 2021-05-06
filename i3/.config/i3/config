@@ -132,7 +132,7 @@ for_window [window_role="Preferences"] floating enable
 for_window [window_role="About"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-for_window [class="(?i)firefox" window_role="(?i)GtkFileChooserDialog"] floating enable, move position center, resize set 800 600
+for_window [window_role="(?i)GtkFileChooserDialog"] floating enable, move position center, resize set 800 600
 
 # Applications to start as a floating window
 for_window [class="(?i)runelite"] floating enable
