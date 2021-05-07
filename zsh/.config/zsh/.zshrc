@@ -33,6 +33,7 @@ HISTFILE="$XDG_DATA_HOME/zsh/history"
 HISTSIZE=2000
 SAVEHIST=2000
 disable r # Disable the zsh built-in 'r' command (run previous executed command)
+setopt hist_ignore_space # If the first character is a space, don't add to zsh history
 setopt interactive_comments # Allow comments (#) in interactive shells
 
 # Enable Tab command completion
